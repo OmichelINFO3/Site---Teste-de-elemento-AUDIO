@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemplo de Métodos do Objeto Áudio</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+ body {
+    margin: 0;
+    background-color: rgb(39, 48, 75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Assegura que o body ocupe toda a altura da viewport */
+}
+
+#titulo{
+    background-color: white;
+    margin: 0;
+    font-family: helvetica;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#div-geral {
+    display: flex;
+    flex-direction: column; /* Alinha os elementos internos verticalmente */
+    align-items: center; /* Centraliza horizontalmente os itens */
+    gap: 20px;
+    background-color: rgb(92, 92, 92);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+
+    #botao-toggle{
+        background-color: rgb(198, 198, 198);
+        border-radius: 100px;
+        border: none;
+        text-align: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    #botao-toggle2{
+        background-color: rgb(198, 198, 198);
+        border-radius: 100px;
+        border: none;
+        text-align: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .botoes-menu{
+        background-color: rgb(3, 130, 185);
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: none;
+        color: white;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+
+    #div-botoes{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: white;
+        border-radius: 200px;
+        padding: 10px;
+        gap: 20px;
+    }
+
+    #botoes-menu-div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #botoes-menu-div2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+</style>
+</head>
+<body>
+<div id="div-geral">
+    <h1 id="titulo">Teste para multimidia</h1>
+    <audio id="audioElement" controls>
+        <source src="sound.mp3" type="audio/mp3">
+    </audio>
+    <div id="div-botoes">
+        <div id="botao-toggle-div">
+            <button id="botao-toggle"><img src="img-hide.png"></button>
+        </div>
+        <div id="botoes-menu-div">
+            <button class="botoes-menu" id="play-pause"><img src="img-play.png"></button>
+            <button class="botoes-menu" id="stop"><img src="img-stop.png"></button>
+            <button class="botoes-menu" id="mute"><img src="img-mute.png"></button>
+            <button class="botoes-menu" id="speed-up"><img src="img-sup.png"></button>
+            <button class="botoes-menu" id="speed-down"><img src="img-sdw.png"></button>
+            <button class="botoes-menu" id="reload"><img src="img-rld.png"></button>
+        </div>
+    </div>
+    <audio id="audioElement2" controls>
+        <source src="sound2.ogg" type="audio/ogg">
+    </audio>
+    <div id="div-botoes">
+        <div id="botao-toggle-div">
+            <button id="botao-toggle2"><img src="img-hide.png"></button>
+        </div>
+        <div id="botoes-menu-div2">
+            <button class="botoes-menu" id="play-pause2"><img src="img-play.png"></button>
+            <button class="botoes-menu" id="stop2"><img src="img-stop.png"></button>
+            <button class="botoes-menu" id="mute2"><img src="img-mute.png"></button>
+            <button class="botoes-menu" id="speed-up2"><img src="img-sup.png"></button>
+            <button class="botoes-menu" id="speed-down2"><img src="img-sdw.png"></button>
+            <button class="botoes-menu" id="reload2"><img src="img-rld.png"></button>
+        </div>
+    </div>
+    
+    <script>
+  $(document).ready(function () {
+    var audio = $('#audioElement')[0];
+    var audio2 = $('#audioElement2')[0]; 
+
+    $('#play-pause').click(function() {
+        if(audio.paused) {
+            audio.play();
+        } else {
+            audio.pause();
+        }
+    });
+
+   
+    $('#stop').click(function() {
+        audio.pause();
+        audio.currentTime = 0;
+    });
+
+    
+    $('#mute').click(function() {
+        audio.muted = !audio.muted;
+    });
+
+    
+    $('#speed-up').click(function() {
+        audio.playbackRate += 0.25;
+    });
+
+
+    $('#speed-down').click(function() {
+        audio.playbackRate -= 0.25;
+    });
+
+
+    $('#reload').click(function() {
+        audio.load();
+    });
+
+    $('#botao-toggle').click(function() {
+        $("#botoes-menu-div").animate({width:'toggle'},350);
+    });
+
+    $('#play-pause2').click(function() {
+        if(audio2.paused) {
+            audio2.play();
+        } else {
+            audio2.pause();
+        }
+    });
+
+   
+    $('#stop2').click(function() {
+        audio2.pause();
+        audio2.currentTime = 0;
+    });
+
+    
+    $('#mute2').click(function() {
+        audio2.muted = !audio2.muted;
+    });
+
+    
+    $('#speed-up2').click(function() {
+        audio2.playbackRate += 0.25;
+    });
+
+
+    $('#speed-down2').click(function() {
+        audio2.playbackRate -= 0.25;
+    });
+
+
+    $('#reload2').click(function() {
+        audio2.load();
+    });
+
+    var i=0;
+    $('#botao-toggle2').click(function() {
+        $("#botoes-menu-div2").animate({width:'toggle'},350);
+    });
+});
+    </script>
+</div>
+</body>
+</html>
